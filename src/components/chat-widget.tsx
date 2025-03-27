@@ -49,15 +49,15 @@ export default function ChatWidget({
     }
   }, [initialGreeting, resetList, appendMsg, storageKey]);
 
-  useEffect(() => {
-    if (!soundRef.current) {
-      soundRef.current = new Audio('/notify.mp3');
-    }
-    const lastMsg = messages[messages.length - 1];
-    if (lastMsg?.position === 'left') {
-      soundRef.current?.play().catch(() => { });
-    }
-  }, [messages]);
+  // useEffect(() => {
+  //   if (!soundRef.current) {
+  //     soundRef.current = new Audio('/notify.mp3');
+  //   }
+  //   const lastMsg = messages[messages.length - 1];
+  //   if (lastMsg?.position === 'left') {
+  //     soundRef.current?.play().catch(() => { });
+  //   }
+  // }, [messages]);
 
   useEffect(() => {
     if (messages.length > 0) {

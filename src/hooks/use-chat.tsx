@@ -29,7 +29,7 @@ export function useChat(options?: UseChatOptions) {
       setTyping(true);
 
       try {
-        const response = await fetch('http://localhost:8080/chat', {
+        const response = await fetch('https://chat.anggasaputra.com/api/chat', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
