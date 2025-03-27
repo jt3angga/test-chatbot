@@ -1,5 +1,5 @@
 (function () {
-  const origin = window.location.origin;
+  const baseUrl = scriptTag?.dataset.url || "";
   const scriptTag = document.currentScript;
 
   const token = scriptTag?.dataset.token || "";
@@ -55,7 +55,7 @@
 
   const iframe = document.createElement("iframe");
   iframe.id = "chatbot-iframe";
-  iframe.src = `${origin}/embed-chat?lang=${lang}&theme=${theme}&greeting=${encodeURIComponent(
+  iframe.src = `${baseUrl}&lang=${lang}&theme=${theme}&greeting=${encodeURIComponent(
     greeting
   )}&token=${token}`;
   iframe.width = "360";
