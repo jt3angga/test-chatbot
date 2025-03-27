@@ -1,0 +1,63 @@
+<!-- embed.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Widget Embed</title>
+    <style>
+      .chat-widget-button {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        font-size: 24px;
+        z-index: 9999;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      }
+
+      .chat-widget-frame {
+        position: fixed;
+        bottom: 100px;
+        right: 24px;
+        width: 360px;
+        height: 500px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        display: none;
+        z-index: 9998;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      (function () {
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://yourdomain.com/embed-chat";
+        iframe.className = "chat-widget-frame";
+        iframe.id = "chat-widget-frame";
+
+        const button = document.createElement("button");
+        button.className = "chat-widget-button";
+        button.id = "chat-widget-toggle";
+        button.innerText = "💬";
+
+        button.onclick = function () {
+          const isOpen = iframe.style.display === "block";
+          iframe.style.display = isOpen ? "none" : "block";
+          button.innerText = isOpen ? "💬" : "×";
+        };
+
+        document.body.appendChild(iframe);
+        document.body.appendChild(button);
+      })();
+    </script>
+  </body>
+</html>
