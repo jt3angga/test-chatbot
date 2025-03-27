@@ -1,7 +1,6 @@
 (function () {
-  const baseUrl = scriptTag?.dataset.url || "";
   const scriptTag = document.currentScript;
-
+  const baseUrl = scriptTag?.dataset.url || "";
   const token = scriptTag?.dataset.token || "";
   const lang = scriptTag?.dataset.lang || "id";
   const greeting =
