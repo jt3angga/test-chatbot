@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react';
 import Chat, { Bubble, Avatar, MessageProps } from '@chatui/core';
 import '@chatui/core/dist/index.css';
 import { useChat } from '@/hooks/use-chat';
+import Image from 'next/image';
 
 interface ChatWidgetProps {
   initialGreeting?: string;
@@ -78,9 +80,13 @@ export default function ChatWidget({
 
     return (
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-        {!isUser && avatar && <Avatar src={avatar} size={'md'} />}
+        {!isUser && avatar && (
+          <img src={avatar} alt="avatar" style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} />
+        )}
         <Bubble content={msg.content.text} style={bubbleCustomStyle} />
-        {isUser && avatar && <Avatar src={avatar} size="md" />}
+        {isUser && avatar && (
+          <img src={avatar} alt="avatar" style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} />
+        )}
       </div>
     );
   };
