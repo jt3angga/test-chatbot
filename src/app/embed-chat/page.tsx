@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 
 import dynamic from 'next/dynamic';
+import { AuthProvider, useAuth } from '../../../providers/auth-provider';
 
 const ChatWidget = dynamic(() => import('@/components/chat-widget'), {
   ssr: false,
@@ -12,9 +13,11 @@ const ChatWidget = dynamic(() => import('@/components/chat-widget'), {
 
 export default function EmbedChatPage() {
   return (
-    <Suspense fallback={null}>
-      <ChatPage />
-    </Suspense>
+    <AuthProvider>
+      <Suspense fallback={null}>
+        <ChatPage />
+      </Suspense>
+    </AuthProvider>
   )
 }
 
@@ -24,6 +27,7 @@ function ChatPage() {
   const theme = searchParams.get('theme') || 'light'
   const greeting = searchParams.get('greeting') || 'Halo! Ada yang bisa saya bantu?'
 
+  const { token, name } = useAuth();
   const [message, setMessage] = useState('')
 
   useEffect(() => {
@@ -31,6 +35,9 @@ function ChatPage() {
     document.body.style.backgroundColor = theme === 'dark' ? '#111' : '#fff'
     setMessage(greeting)
   }, [lang, theme, greeting])
+
+  console.log("TOKEN", token)
+  console.log("NAME", name)
 
   return (
     <div style={{ height: '100vh', margin: 0 }}>
@@ -40,7 +47,6 @@ function ChatPage() {
           userAvatar="https://i.pravatar.cc/40?u=user"
           botAvatar="https://i.pravatar.cc/40?u=bot"
           autoOpenDelay={500}
-          authToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
           bubbleStyle={{
             user: {
               backgroundColor: '#007bff',

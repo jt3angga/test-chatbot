@@ -1,6 +1,6 @@
 (function () {
   const scriptTag = document.currentScript;
-  const baseUrl = scriptTag?.dataset.url || "";
+  const baseUrl = "https://chat.anggasaputra.com/embed-chat";
   const token = scriptTag?.dataset.token || "";
   const lang = scriptTag?.dataset.lang || "id";
   const greeting =
@@ -54,7 +54,9 @@
 
   const iframe = document.createElement("iframe");
   iframe.id = "chatbot-iframe";
-  iframe.src = `${baseUrl}&lang=${lang}&theme=${theme}&greeting=${encodeURIComponent(
+  iframe.src = `${baseUrl}?origin=${encodeURIComponent(
+    window.location.origin
+  )}&lang=${lang}&theme=${theme}&greeting=${encodeURIComponent(
     greeting
   )}&token=${token}`;
   iframe.width = "360";
@@ -80,7 +82,6 @@
     }
   });
 
-  // 🕓 Auto-open after idle
   let idleTimeout;
   function startIdleTimer() {
     clearTimeout(idleTimeout);
@@ -92,6 +93,4 @@
     document.addEventListener(e, startIdleTimer)
   );
   startIdleTimer();
-
-  console.log("[ChatPlugin] loaded with token:", token);
 })();
