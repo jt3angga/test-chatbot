@@ -40,7 +40,7 @@ function ChatPage() {
           userAvatar="https://i.pravatar.cc/40?u=user"
           botAvatar="https://i.pravatar.cc/40?u=bot"
           autoOpenDelay={500}
-          authToken='supersecrettoken123'
+          authToken={process.env.NEXT_PUBLIC_CHAT_API_TOKEN}
           bubbleStyle={{
             user: {
               backgroundColor: '#007bff',
