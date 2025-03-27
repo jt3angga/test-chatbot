@@ -2,10 +2,9 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react';
-import Chat, { Bubble, Avatar, MessageProps } from '@chatui/core';
+import Chat, { Bubble, MessageProps } from '@chatui/core';
 import '@chatui/core/dist/index.css';
 import { useChat } from '@/hooks/use-chat';
-import Image from 'next/image';
 
 interface ChatWidgetProps {
   initialGreeting?: string;
